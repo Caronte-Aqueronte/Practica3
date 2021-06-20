@@ -37,7 +37,7 @@ public class VectorJugador {
     public void mostrarJugadores() {
         if (contadorJugadores > 0) {
             for (int x = 0; x < contadorJugadores; x++) {
-                System.out.println("Id del jugador: " + jugadores[x].getId() + "Nommbre de jugador: " + jugadores[x].getNombre());
+                System.out.println("Id del jugador: " + jugadores[x].getId() + " Nommbre de jugador: " + jugadores[x].getNombre());
             }
         } else {
             System.out.println("No hay jugadores registrados");
@@ -51,6 +51,15 @@ public class VectorJugador {
             }
         }
         return false;
+    }
+
+    public String getNombrePorId(int id) {
+        for (int x = 0; x < contadorJugadores; x++) {
+            if(id == jugadores[x].getId()){
+                return jugadores[x].getNombre();
+            }
+        }
+        return "nose";
     }
 
     public int getContadorJugadores() {

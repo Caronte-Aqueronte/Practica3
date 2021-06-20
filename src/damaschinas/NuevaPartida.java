@@ -7,10 +7,11 @@ public class NuevaPartida {
     private VectorJugador vectorJugador;
     private Tablero tablero = new Tablero();
     private Scanner scanner = new Scanner(System.in);
-    private JuegoPiedraPapelTijera piedraPapel = new JuegoPiedraPapelTijera();
+    private JuegoPiedraPapelTijera piedraPapel;
 
     public NuevaPartida(VectorJugador vectorJugador) {
         this.vectorJugador = vectorJugador;
+        piedraPapel = new JuegoPiedraPapelTijera(vectorJugador);
         pedirJugadores();
     }
 
@@ -38,6 +39,7 @@ public class NuevaPartida {
     }
 
     public void decidirQuienEmpieza(int idPrimerJugador, int idSegundoJugador) {
-        int jugarPiedraPapelYTijera = piedraPapel.jugarPiedraPapelYTijera();
+
+        int jugarPiedraPapelYTijera = piedraPapel.jugarPiedraPapelYTijera(idPrimerJugador, idSegundoJugador);
     }
 }
