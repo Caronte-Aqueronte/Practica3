@@ -30,7 +30,7 @@ Ejemplo sencillo de utilización de ant para compilación
 <!-- Agregamos todo lo que hay en ${build} en ${nameDist}-${DSTAMP}.jar -->
 <jar jarfile ="${dist}/lib/MyApp-${DSTAMP}.jar" basedir ="${build}" >
 <manifest >
-<attribute name="Main-Class" value ="src/principal/Principal" />
+<attribute name="Main-Class" value ="src.principal.Principal" />
 </manifest >
 </jar>
 </target >
