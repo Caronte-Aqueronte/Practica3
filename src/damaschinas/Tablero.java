@@ -4,11 +4,17 @@ public class Tablero {
 
     private Casilla[][] tablero = new Casilla[8][8];
 
-    public Tablero() {
-        llenarTableroPrimeraVez();
+    public Tablero(int piezaQueComienza) {
+        int piezaSecundaria;
+        if(piezaQueComienza == 1){
+            piezaSecundaria = 2;
+        }else{
+            piezaSecundaria = 1;
+        }
+        llenarTablero(piezaQueComienza,piezaSecundaria);
     }
 
-    public void llenarTableroPrimeraVez() {
+    public void llenarTablero(int piezaQueComienza, int piezSecundaria) {
         for (int x = 0; x < tablero.length; x++) {
             for (int y = 0; y < tablero[x].length; y++) {
                 if (x >= 0 && x <= 2) {
@@ -16,11 +22,11 @@ public class Tablero {
                         if ((y + 1) % 2 == 0) {
                             tablero[x][y] = new Casilla(false, false, 0);
                         } else {
-                            tablero[x][y] = new Casilla(true, true, 1);
+                            tablero[x][y] = new Casilla(true, true, piezSecundaria);
                         }
                     } else {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(true, true, 1);
+                            tablero[x][y] = new Casilla(true, true, piezSecundaria);
                         } else {
                             tablero[x][y] = new Casilla(false, false, 0);
                         }
@@ -30,11 +36,11 @@ public class Tablero {
                         if ((y + 1) % 2 == 0) {
                             tablero[x][y] = new Casilla(false, false, 0);
                         } else {
-                            tablero[x][y] = new Casilla(true, true, 2);
+                            tablero[x][y] = new Casilla(true, true, piezaQueComienza);
                         }
                     } else {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(true, true, 2);
+                            tablero[x][y] = new Casilla(true, true, piezaQueComienza);
                         } else {
                             tablero[x][y] = new Casilla(false, false, 0);
                         }
