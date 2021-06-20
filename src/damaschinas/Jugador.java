@@ -1,5 +1,5 @@
 
-package damaschinas;
+package src.damaschinas;
 
 public class Jugador {
     private int id;

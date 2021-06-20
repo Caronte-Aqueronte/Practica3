@@ -1,4 +1,4 @@
-package damaschinas;
+package src.damaschinas;
 
 import java.util.Scanner;
 

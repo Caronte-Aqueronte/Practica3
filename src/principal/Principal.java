@@ -1,7 +1,7 @@
-package principal;
+package src.principal;
 
-import damaschinas.NuevaPartida;
-import damaschinas.VectorJugador;
+import src.damaschinas.NuevaPartida;
+import src.damaschinas.VectorJugador;
 import java.util.Scanner;
 
 public class Principal {

@@ -1,4 +1,4 @@
-package damaschinas;
+package src.damaschinas;
 
 public class Tablero {
 
