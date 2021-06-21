@@ -90,13 +90,19 @@ public class Tablero {
     }
 
     public boolean moverPieza(int posAntiguaX, int posAntiguaY, int posNuevaX, int posNuevaY, int pieza) {
-        tablero[posAntiguaY][posAntiguaX].setNumPieza(0);
-        tablero[posAntiguaY][posAntiguaX].setTienePieza(false);
-        tablero[posAntiguaY][posAntiguaX].definirColor(0);
+        if (tablero[posNuevaY][posNuevaX].getNumPieza() != pieza) {
 
-        tablero[posNuevaY][posNuevaX].setNumPieza(pieza);
-        tablero[posNuevaY][posNuevaX].setTienePieza(true);
-        tablero[posNuevaY][posNuevaX].definirColor(pieza);
-        return true;
+            tablero[posAntiguaY][posAntiguaX].setNumPieza(0);
+            tablero[posAntiguaY][posAntiguaX].setTienePieza(false);
+            tablero[posAntiguaY][posAntiguaX].definirColor(0);
+
+            tablero[posNuevaY][posNuevaX].setNumPieza(pieza);
+            tablero[posNuevaY][posNuevaX].setTienePieza(true);
+            tablero[posNuevaY][posNuevaX].definirColor(pieza);
+            return true;
+
+        }
+        System.out.println("No se puede mover a esta pocision");
+        return false;
     }
 }

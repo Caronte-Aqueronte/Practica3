@@ -77,7 +77,7 @@ public class NuevaPartida {
                 pieza = piezaSegundo;
             }
             repetirHastaQueIngresePosicionConPiezaDelJugador(id, pieza);
-            //turno++;
+            turno++;
         }
 
     }
@@ -88,32 +88,35 @@ public class NuevaPartida {
         boolean bandera = false;
         tablero.imprimirTablero();
         while (bandera == false) {
-            System.out.println("\n" + vectorJugador.getNombrePorId(id) + " elija la pieza que movera");
-            System.out.print("\nX: ");
-            x = scanner.nextInt();
-            System.out.print("Y: ");
-            y = scanner.nextInt();
-            if ((x - 1) >= 0 && (x - 1) <= 7 && (y - 1) >= 0 && (y - 1) <= 7) {
-                bandera = tablero.saberSiTienePiezaDelJugador((x - 1), (y - 1), pieza);
-            } else {
-                System.out.println("\nPosicion inexistente");
+            while (bandera == false) {
+                System.out.println("\n" + vectorJugador.getNombrePorId(id) + " elija la pieza que movera");
+                System.out.print("\nX: ");
+                x = scanner.nextInt();
+                System.out.print("Y: ");
+                y = scanner.nextInt();
+                if ((x - 1) >= 0 && (x - 1) <= 7 && (y - 1) >= 0 && (y - 1) <= 7) {
+                    bandera = tablero.saberSiTienePiezaDelJugador((x - 1), (y - 1), pieza);
+                } else {
+                    System.out.println("\nPosicion inexistente");
+                }
             }
+            bandera = moverPieza(x, y, pieza);
         }
-        moverPieza(x, y, pieza);
     }
 
-    public void moverPieza(int posPiezaX, int posPiezaY, int pieza) {
+    public boolean moverPieza(int posPiezaX, int posPiezaY, int pieza) {
         int x;
         int y;
         boolean bandera = false;
         while (bandera == false) {
+            tablero.imprimirTablero();
             System.out.println("\nIngrese la posicion a donde movera su pieza\t-1)Cambiar de pieza");
             System.out.print("\nX: ");
             x = scanner.nextInt();
             System.out.print("Y: ");
             y = scanner.nextInt();
             if (x == -1) {
-                return;
+                return false;
             }
             if ((x - 1) >= 0 && (x - 1) <= 7 && (y - 1) >= 0 && (y - 1) <= 7) {
                 if ((y == (posPiezaY + 1) && (x == (posPiezaX + 1) || x == (posPiezaX - 1))) || (y == (posPiezaY - 1) && (x == (posPiezaX - 1) || x == (posPiezaX + 1)))) {
@@ -125,5 +128,6 @@ public class NuevaPartida {
                 System.out.println("\nPosicion inexistente");
             }
         }
+        return true;
     }
 }
