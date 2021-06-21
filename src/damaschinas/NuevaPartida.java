@@ -14,7 +14,9 @@ public class NuevaPartida {
         piedraPapel = new JuegoPiedraPapelTijera(vectorJugador);
         pedirJugadores();
     }
-
+    /**
+     * Pedimos los id de los jugadores para que nos sirvan como referencia
+     */
     public void pedirJugadores() {
         if (vectorJugador.getContadorJugadores() >= 2) {
             int idPrimerJugador;
@@ -37,10 +39,15 @@ public class NuevaPartida {
             System.out.println("Jugadores insuficientes para una partida");
         }
     }
-
+    /**
+     * Aqui mandamos a los jugadores a jugar piedra papel y tijera
+     * @param idPrimerJugador
+     * @param idSegundoJugador 
+     */
     public void decidirQuienEmpieza(int idPrimerJugador, int idSegundoJugador) {
 
         String opcion = "";
+        int segundo = 0;
         int primero = piedraPapel.jugarPiedraPapelYTijera(idPrimerJugador, idSegundoJugador);
         String nombrePrimero = vectorJugador.getNombrePorId(primero);
         int piezaSegundoJugador;
@@ -52,7 +59,12 @@ public class NuevaPartida {
         }
 
         piezaPrimerJugador = Integer.valueOf(opcion);
-
+        
+        if(primero == idPrimerJugador){
+            segundo = idSegundoJugador;
+        }else if(primero == idSegundoJugador){
+            segundo = idPrimerJugador;
+        }
         if (piezaPrimerJugador == 1) {
             piezaSegundoJugador = 2;
         } else {
@@ -60,8 +72,15 @@ public class NuevaPartida {
         }
 
         tablero = new Tablero(Integer.valueOf(opcion));
-        loopHastaTenerGanador(primero, idSegundoJugador, piezaPrimerJugador, piezaSegundoJugador);
+        loopHastaTenerGanador(primero, segundo, piezaPrimerJugador, piezaSegundoJugador);
     }
+    /**
+     * Este metodo no acaba hasta que el usuario ingrese una ubicacion aceptada
+     * @param idPrimero
+     * @param idSegundo
+     * @param piezaPrimero
+     * @param piezaSegundo 
+     */
 
     public void loopHastaTenerGanador(int idPrimero, int idSegundo, int piezaPrimero, int piezaSegundo) {
         int turno = 1;
@@ -78,7 +97,7 @@ public class NuevaPartida {
                 pieza = piezaSegundo;
             }
             repetirHastaQueIngresePosicionConPiezaDelJugador(id, pieza);
-            //turno++;
+            turno++;
             idGanador = tablero.verPiezaGanadora(idPrimero, idSegundo, piezaPrimero, piezaSegundo);
             if(idGanador == idPrimero){
                 idPerdedor = idSegundo;
@@ -87,10 +106,14 @@ public class NuevaPartida {
             }
         }
         System.out.println("El ganador es "+vectorJugador.getNombrePorId(idGanador));
-        vectorJugador.sumarVIsctorias(idGanador);
+        vectorJugador.sumarVictorias(idGanador);
         vectorJugador.sumarDerrotas(idPerdedor);
     }
-
+    /**
+     * Este metodo termina hasta que el jugador ingresa correctamente la nueva ubicacion de su pieza
+     * @param id
+     * @param pieza 
+     */
     public void repetirHastaQueIngresePosicionConPiezaDelJugador(int id, int pieza) {
         int x = 0;
         int y = 0;
@@ -112,7 +135,13 @@ public class NuevaPartida {
             bandera = moverPieza(x, y, pieza);
         }
     }
-
+    /**
+     * movemos la pieza validando que el movimiento sea en forma vertical
+     * @param posPiezaX
+     * @param posPiezaY
+     * @param pieza
+     * @return 
+     */
     public boolean moverPieza(int posPiezaX, int posPiezaY, int pieza) {
         int x;
         int y;
@@ -138,8 +167,5 @@ public class NuevaPartida {
             }
         }
         return true;
-    }
-    public void verGanador(){
-        
     }
 }

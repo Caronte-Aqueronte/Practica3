@@ -38,7 +38,7 @@ public class VectorJugador {
         Jugador auxiliar;
         for (int i = 2; i < contadorJugadores; i++) {
             for (int j = 0; j < contadorJugadores - i; j++) {
-                if (jugadores[j].getPartidasGanadas() > jugadores[j + 1].getPartidasGanadas()) {
+                if (jugadores[j].getPartidasGanadas() < jugadores[j + 1].getPartidasGanadas()) {
                     auxiliar = jugadores[j];
                     jugadores[j] = jugadores[j + 1];
                     jugadores[j + 1] = auxiliar;
@@ -75,7 +75,7 @@ public class VectorJugador {
         return "Jugador no registrado";
     }
 
-    public void sumarVIsctorias(int id) {
+    public void sumarVictorias(int id) {
         for (int x = 0; x < contadorJugadores; x++) {
             if (id == jugadores[x].getId()) {
                 jugadores[x].setPartidasGanadas(jugadores[x].getPartidasGanadas() + 1);

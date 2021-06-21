@@ -14,7 +14,11 @@ public class Tablero {
         System.out.println(piezaQueComienza + " " + piezaSecundaria);
         llenarTablero(piezaQueComienza, piezaSecundaria);
     }
-
+    /**
+     * Aqui llenamos el tablero por primera vez en base a la pieza que elegio el usuario
+     * @param piezaQueComienza
+     * @param piezaSecundaria 
+     */
     public void llenarTablero(int piezaQueComienza, int piezaSecundaria) {
         for (int x = 0; x < tablero.length; x++) {
             for (int y = 0; y < tablero[x].length; y++) {
@@ -62,7 +66,9 @@ public class Tablero {
             }
         }
     }
-
+    /**
+     * Imprimimos el tablero
+     */
     public void imprimirTablero() {
         System.out.println("");
         for (int x = 0; x < 8; x++) {
@@ -77,7 +83,13 @@ public class Tablero {
             System.out.println("");
         }
     }
-
+    /**
+     * Aqui vemos en base a la clase casila si hay pieza en este lugar de la matriz
+     * @param x
+     * @param y
+     * @param pieza
+     * @return 
+     */
     public boolean saberSiTienePiezaDelJugador(int x, int y, int pieza) {
         if (tablero[y][x].getNumPieza() == pieza) {
             return true;
@@ -88,7 +100,15 @@ public class Tablero {
         System.out.println("La pieza que esta en la casilla no es del jugador");
         return false;
     }
-
+    /**
+     * movemos la pieza y si no hay una ieza igual a la del jugador entonces se mueve o se come a la que esta aledaya a ella
+     * @param posAntiguaX
+     * @param posAntiguaY
+     * @param posNuevaX
+     * @param posNuevaY
+     * @param pieza
+     * @return 
+     */
     public boolean moverPieza(int posAntiguaX, int posAntiguaY, int posNuevaX, int posNuevaY, int pieza) {
         if (tablero[posNuevaY][posNuevaX].getNumPieza() != pieza) {
 
@@ -105,6 +125,14 @@ public class Tablero {
         System.out.println("No se puede mover a esta pocision");
         return false;
     }
+    /**
+     * Aqui vemos quien es el ganador
+     * @param idPrimerJugador
+     * @param idSegundoJugador
+     * @param pieza1
+     * @param pieza2
+     * @return 
+     */
     public int verPiezaGanadora(int idPrimerJugador, int idSegundoJugador, int pieza1, int pieza2){
         int contadorPrimerJugador = 0;
         int contadorSegundoJugador = 0;

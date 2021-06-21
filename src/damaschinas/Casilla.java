@@ -26,7 +26,10 @@ public class Casilla {
         definirColor(pieza);
 
     }
-
+    /**
+     * Vemos la pieza y el color que sera
+     * @param pieza 
+     */
     public void definirColor(int pieza) {
         if (tienePieza == true) {
             if (color == true) {
