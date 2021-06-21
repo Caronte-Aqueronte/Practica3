@@ -17,10 +17,10 @@ public class Casilla {
     // reset
     private String reset = "\u001B[0m";
 
-    public Casilla(boolean color, boolean tienePieza, int pieza, int numPieza, int posX, int posY) {
+    public Casilla(boolean color, boolean tienePieza, int pieza, int posX, int posY) {
         this.color = color;
         this.tienePieza = tienePieza;
-        this.numPieza = numPieza;
+        this.numPieza = pieza;
         this.posX = posX;
         this.posY = posY;
         definirColor(pieza);

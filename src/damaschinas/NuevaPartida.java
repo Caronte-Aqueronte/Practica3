@@ -47,7 +47,7 @@ public class NuevaPartida {
         int piezaPrimerJugador;
 
         while (!"1".equals(opcion) && !"2".equals(opcion)) {
-            System.out.println(nombrePrimero + "\nElige una pieza valida \n1) X\n2) O");
+            System.out.println(nombrePrimero + " elige una pieza valida \n1) X\n2) O");
             opcion = scanner.next();
         }
 
@@ -65,7 +65,6 @@ public class NuevaPartida {
 
     public void loopHastaTenerGanador(int idPrimero, int idSegundo, int piezaPrimero, int piezaSegundo) {
         int turno = 1;
-        int auxTurno;
         int id;
         int pieza;
         boolean hayGanador = false;
@@ -73,21 +72,19 @@ public class NuevaPartida {
             if (turno % 2 != 0) {
                 id = idPrimero;
                 pieza = piezaPrimero;
-                auxTurno = 1;
             } else {
                 id = idSegundo;
                 pieza = piezaSegundo;
-                auxTurno = 2;
             }
             repetirHastaQueIngresePosicionConPiezaDelJugador(id, pieza);
-            turno++;
+            //turno++;
         }
 
     }
 
     public void repetirHastaQueIngresePosicionConPiezaDelJugador(int id, int pieza) {
-        int x;
-        int y;
+        int x = 0;
+        int y = 0;
         boolean bandera = false;
         tablero.imprimirTablero();
         while (bandera == false) {
@@ -102,22 +99,31 @@ public class NuevaPartida {
                 System.out.println("\nPosicion inexistente");
             }
         }
+        moverPieza(x, y, pieza);
     }
 
-    public void moverPieza(int turno) {
+    public void moverPieza(int posPiezaX, int posPiezaY, int pieza) {
         int x;
         int y;
-        System.out.println("\nIngrese la posicion a donde movera su pieza\t-1)Cambiar de pieza");
-        System.out.print("\nX: ");
-        x = scanner.nextInt();
-        System.out.print("Y: ");
-        y = scanner.nextInt();
-        switch(turno){
-            case 1:
-                break;
-            case 2:
-                break;
+        boolean bandera = false;
+        while (bandera == false) {
+            System.out.println("\nIngrese la posicion a donde movera su pieza\t-1)Cambiar de pieza");
+            System.out.print("\nX: ");
+            x = scanner.nextInt();
+            System.out.print("Y: ");
+            y = scanner.nextInt();
+            if (x == -1) {
+                return;
+            }
+            if ((x - 1) >= 0 && (x - 1) <= 7 && (y - 1) >= 0 && (y - 1) <= 7) {
+                if ((y == (posPiezaY + 1) && (x == (posPiezaX + 1) || x == (posPiezaX - 1))) || (y == (posPiezaY - 1) && (x == (posPiezaX - 1) || x == (posPiezaX + 1)))) {
+                    bandera = tablero.moverPieza(posPiezaX - 1, posPiezaY - 1, x - 1, y - 1, pieza);
+                } else {
+                    System.out.println("No se puede mover a esta poscion");
+                }
+            } else {
+                System.out.println("\nPosicion inexistente");
+            }
         }
-
     }
 }

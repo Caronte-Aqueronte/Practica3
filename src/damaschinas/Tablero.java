@@ -21,42 +21,42 @@ public class Tablero {
                 if (x >= 0 && x <= 2) {
                     if ((x + 1) % 2 == 0) {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
+                            tablero[x][y] = new Casilla(false, false, 0, y, x);
                         } else {
-                            tablero[x][y] = new Casilla(true, true, piezaSecundaria, piezaSecundaria, y, x);
+                            tablero[x][y] = new Casilla(true, true, piezaSecundaria, y, x);
                         }
                     } else {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(true, true, piezaSecundaria, piezaSecundaria, y, x);
+                            tablero[x][y] = new Casilla(true, true, piezaSecundaria, y, x);
                         } else {
-                            tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
+                            tablero[x][y] = new Casilla(false, false, 0, y, x);
                         }
                     }
                 } else if (x >= 5 && x <= 7) {
                     if ((x + 1) % 2 == 0) {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
+                            tablero[x][y] = new Casilla(false, false, 0, y, x);
                         } else {
-                            tablero[x][y] = new Casilla(true, true, piezaQueComienza, piezaQueComienza, y, x);
+                            tablero[x][y] = new Casilla(true, true, piezaQueComienza, y, x);
                         }
                     } else {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(true, true, piezaQueComienza, piezaQueComienza, y, x);
+                            tablero[x][y] = new Casilla(true, true, piezaQueComienza, y, x);
                         } else {
-                            tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
+                            tablero[x][y] = new Casilla(false, false, 0, y, x);
                         }
                     }
                 } else if ((x + 1) % 2 == 0) {
                     if ((y + 1) % 2 == 0) {
-                        tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
+                        tablero[x][y] = new Casilla(false, false, 0, y, x);
                     } else {
-                        tablero[x][y] = new Casilla(true, false, 0, 0, y, x);
+                        tablero[x][y] = new Casilla(true, false, 0, y, x);
                     }
                 } else {
                     if ((y + 1) % 2 == 0) {
-                        tablero[x][y] = new Casilla(true, false, 0, 0, y, x);
+                        tablero[x][y] = new Casilla(true, false, 0, y, x);
                     } else {
-                        tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
+                        tablero[x][y] = new Casilla(false, false, 0, y, x);
                     }
                 }
             }
@@ -87,5 +87,16 @@ public class Tablero {
         }
         System.out.println("La pieza que esta en la casilla no es del jugador");
         return false;
+    }
+
+    public boolean moverPieza(int posAntiguaX, int posAntiguaY, int posNuevaX, int posNuevaY, int pieza) {
+        tablero[posAntiguaY][posAntiguaX].setNumPieza(0);
+        tablero[posAntiguaY][posAntiguaX].setTienePieza(false);
+        tablero[posAntiguaY][posAntiguaX].definirColor(0);
+
+        tablero[posNuevaY][posNuevaX].setNumPieza(pieza);
+        tablero[posNuevaY][posNuevaX].setTienePieza(true);
+        tablero[posNuevaY][posNuevaX].definirColor(pieza);
+        return true;
     }
 }
