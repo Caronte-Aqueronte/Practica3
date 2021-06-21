@@ -9,7 +9,7 @@ public class Principal {
     public static void main(String[] args) {
         Principal damas = new Principal();
     }
-    
+
     private Scanner scanner = new Scanner(System.in);
 
     private VectorJugador vectorJugador = new VectorJugador();
@@ -21,10 +21,10 @@ public class Principal {
 
     public void menuPrincipal() {
         int opcion = 0;
-        while (opcion != 4) {
+        while (opcion != 5) {
             System.out.println("");
             System.out.println("***\tBIENVENIDO\t***");
-            System.out.println("1) Generar Tablero\n2) Ingresar Nuevo Jugador\n3) Reportes de partidas ganadas y perdias\n4) Salir");
+            System.out.println("1) Nueva Partida\n2) Ingresar Nuevo Jugador\n3) Reportes de partidas ganadas y perdias\n4) Ordenar jugadores\n5) Salir");
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
@@ -37,6 +37,10 @@ public class Principal {
                     vectorJugador.mostrarReportes();
                     break;
                 case 4:
+                    vectorJugador.ordenarJugadores();
+                    vectorJugador.mostrarReportes();
+                    break;
+                case 5:
                     break;
                 default:
                     System.out.println("Opcion invalida");

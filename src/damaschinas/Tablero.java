@@ -105,4 +105,24 @@ public class Tablero {
         System.out.println("No se puede mover a esta pocision");
         return false;
     }
+    public int verPiezaGanadora(int idPrimerJugador, int idSegundoJugador, int pieza1, int pieza2){
+        int contadorPrimerJugador = 0;
+        int contadorSegundoJugador = 0;
+        for (int x = 0; x < tablero.length; x++) {
+            for (int y = 0; y < tablero[x].length; y++) {
+                if(tablero[x][y].getNumPieza() == pieza1){
+                    contadorPrimerJugador++;
+                }else if(tablero[x][y].getNumPieza() == pieza2){
+                    contadorSegundoJugador++;
+                }
+            }  
+        }
+        if(contadorPrimerJugador == 0){
+            return idSegundoJugador;
+        }
+        if(contadorSegundoJugador == 0){
+            return idPrimerJugador;
+        }
+        return 0;
+    }
 }

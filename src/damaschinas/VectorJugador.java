@@ -34,6 +34,19 @@ public class VectorJugador {
         }
     }
 
+    public void ordenarJugadores() {
+        Jugador auxiliar;
+        for (int i = 2; i < contadorJugadores; i++) {
+            for (int j = 0; j < contadorJugadores - i; j++) {
+                if (jugadores[j].getPartidasGanadas() > jugadores[j + 1].getPartidasGanadas()) {
+                    auxiliar = jugadores[j];
+                    jugadores[j] = jugadores[j + 1];
+                    jugadores[j + 1] = auxiliar;
+                }
+            }
+        }
+    }
+
     public void mostrarJugadores() {
         if (contadorJugadores > 0) {
             for (int x = 0; x < contadorJugadores; x++) {
@@ -55,11 +68,27 @@ public class VectorJugador {
 
     public String getNombrePorId(int id) {
         for (int x = 0; x < contadorJugadores; x++) {
-            if(id == jugadores[x].getId()){
+            if (id == jugadores[x].getId()) {
                 return jugadores[x].getNombre();
             }
         }
-        return "nose";
+        return "Jugador no registrado";
+    }
+
+    public void sumarVIsctorias(int id) {
+        for (int x = 0; x < contadorJugadores; x++) {
+            if (id == jugadores[x].getId()) {
+                jugadores[x].setPartidasGanadas(jugadores[x].getPartidasGanadas() + 1);
+            }
+        }
+    }
+
+    public void sumarDerrotas(int id) {
+        for (int x = 0; x < contadorJugadores; x++) {
+            if (id == jugadores[x].getId()) {
+                jugadores[x].setPartidasPerdidas(jugadores[x].getPartidasPerdidas() + 1);
+            }
+        }
     }
 
     public int getContadorJugadores() {

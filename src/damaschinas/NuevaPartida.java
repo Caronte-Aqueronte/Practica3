@@ -67,8 +67,9 @@ public class NuevaPartida {
         int turno = 1;
         int id;
         int pieza;
-        boolean hayGanador = false;
-        while (hayGanador == false) {
+        int idGanador = 0;
+        int idPerdedor = 0;
+        while (idGanador == 0) {
             if (turno % 2 != 0) {
                 id = idPrimero;
                 pieza = piezaPrimero;
@@ -77,9 +78,17 @@ public class NuevaPartida {
                 pieza = piezaSegundo;
             }
             repetirHastaQueIngresePosicionConPiezaDelJugador(id, pieza);
-            turno++;
+            //turno++;
+            idGanador = tablero.verPiezaGanadora(idPrimero, idSegundo, piezaPrimero, piezaSegundo);
+            if(idGanador == idPrimero){
+                idPerdedor = idSegundo;
+            }else if(idGanador == idSegundo){
+                idPerdedor = idPrimero;
+            }
         }
-
+        System.out.println("El ganador es "+vectorJugador.getNombrePorId(idGanador));
+        vectorJugador.sumarVIsctorias(idGanador);
+        vectorJugador.sumarDerrotas(idPerdedor);
     }
 
     public void repetirHastaQueIngresePosicionConPiezaDelJugador(int id, int pieza) {
@@ -129,5 +138,8 @@ public class NuevaPartida {
             }
         }
         return true;
+    }
+    public void verGanador(){
+        
     }
 }
