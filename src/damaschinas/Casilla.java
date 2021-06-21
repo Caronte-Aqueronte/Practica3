@@ -5,6 +5,9 @@ public class Casilla {
     private boolean color;
     private boolean tienePieza;
     private String pieza;
+    private int numPieza;
+    private int posX;
+    private int posY;
     //Colores de letra
     private String textoBlanco = "\u001B[37m";
     private String textoNegro = "\u001B[30m";
@@ -14,9 +17,12 @@ public class Casilla {
     // reset
     private String reset = "\u001B[0m";
 
-    public Casilla(boolean color, boolean tienePieza, int pieza) {
+    public Casilla(boolean color, boolean tienePieza, int pieza, int numPieza, int posX, int posY) {
         this.color = color;
         this.tienePieza = tienePieza;
+        this.numPieza = numPieza;
+        this.posX = posX;
+        this.posY = posY;
         definirColor(pieza);
 
     }
@@ -73,6 +79,30 @@ public class Casilla {
 
     public void setPieza(String pieza) {
         this.pieza = pieza;
+    }
+
+    public int getNumPieza() {
+        return numPieza;
+    }
+
+    public void setNumPieza(int numPieza) {
+        this.numPieza = numPieza;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 
 }

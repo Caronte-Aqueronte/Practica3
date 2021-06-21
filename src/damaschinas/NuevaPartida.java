@@ -20,9 +20,9 @@ public class NuevaPartida {
             int idPrimerJugador;
             int idSegundoJugador;
             vectorJugador.mostrarJugadores();
-            System.out.println("Ingrese el id del primer jugador");
+            System.out.println("\nIngrese el id del primer jugador");
             idPrimerJugador = scanner.nextInt();
-            System.out.println("Ingrese el id del segundo jugador");
+            System.out.println("\nIngrese el id del segundo jugador");
             idSegundoJugador = scanner.nextInt();
             if (vectorJugador.verificarId(idPrimerJugador) == true && vectorJugador.verificarId(idSegundoJugador) == true) {
                 if (idPrimerJugador != idSegundoJugador) {
@@ -47,7 +47,7 @@ public class NuevaPartida {
         int piezaPrimerJugador;
 
         while (!"1".equals(opcion) && !"2".equals(opcion)) {
-            System.out.println(nombrePrimero + " Elige una pieza valida \n1) X\n2) O");
+            System.out.println(nombrePrimero + "\nElige una pieza valida \n1) X\n2) O");
             opcion = scanner.next();
         }
 
@@ -65,26 +65,58 @@ public class NuevaPartida {
 
     public void loopHastaTenerGanador(int idPrimero, int idSegundo, int piezaPrimero, int piezaSegundo) {
         int turno = 1;
+        int auxTurno;
         int id;
         int pieza;
-        int x;
-        int y;
         boolean hayGanador = false;
         while (hayGanador == false) {
             if (turno % 2 != 0) {
                 id = idPrimero;
                 pieza = piezaPrimero;
-            }else{
+                auxTurno = 1;
+            } else {
                 id = idSegundo;
                 pieza = piezaSegundo;
+                auxTurno = 2;
             }
-            tablero.imprimirTablero();
-            System.out.println(vectorJugador.getNombrePorId(id)+" elija la pieza que movera");
-            System.out.print("X: ");
+            repetirHastaQueIngresePosicionConPiezaDelJugador(id, pieza);
+            turno++;
+        }
+
+    }
+
+    public void repetirHastaQueIngresePosicionConPiezaDelJugador(int id, int pieza) {
+        int x;
+        int y;
+        boolean bandera = false;
+        tablero.imprimirTablero();
+        while (bandera == false) {
+            System.out.println("\n" + vectorJugador.getNombrePorId(id) + " elija la pieza que movera");
+            System.out.print("\nX: ");
             x = scanner.nextInt();
             System.out.print("Y: ");
-            y = scanner.nextInt(); 
-            turno++;
+            y = scanner.nextInt();
+            if ((x - 1) >= 0 && (x - 1) <= 7 && (y - 1) >= 0 && (y - 1) <= 7) {
+                bandera = tablero.saberSiTienePiezaDelJugador((x - 1), (y - 1), pieza);
+            } else {
+                System.out.println("\nPosicion inexistente");
+            }
+        }
+    }
+
+    public void moverPieza(int turno) {
+        int x;
+        int y;
+        System.out.println("\nIngrese la posicion a donde movera su pieza\t-1)Cambiar de pieza");
+        System.out.print("\nX: ");
+        x = scanner.nextInt();
+        System.out.print("Y: ");
+        y = scanner.nextInt();
+        switch(turno){
+            case 1:
+                break;
+            case 2:
+                break;
         }
 
     }

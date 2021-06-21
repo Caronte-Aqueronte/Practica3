@@ -6,56 +6,57 @@ public class Tablero {
 
     public Tablero(int piezaQueComienza) {
         int piezaSecundaria;
-        if(piezaQueComienza == 1){
+        if (piezaQueComienza == 1) {
             piezaSecundaria = 2;
-        }else{
+        } else {
             piezaSecundaria = 1;
         }
-        llenarTablero(piezaQueComienza,piezaSecundaria);
+        System.out.println(piezaQueComienza + " " + piezaSecundaria);
+        llenarTablero(piezaQueComienza, piezaSecundaria);
     }
 
-    public void llenarTablero(int piezaQueComienza, int piezSecundaria) {
+    public void llenarTablero(int piezaQueComienza, int piezaSecundaria) {
         for (int x = 0; x < tablero.length; x++) {
             for (int y = 0; y < tablero[x].length; y++) {
                 if (x >= 0 && x <= 2) {
                     if ((x + 1) % 2 == 0) {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(false, false, 0);
+                            tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
                         } else {
-                            tablero[x][y] = new Casilla(true, true, piezSecundaria);
+                            tablero[x][y] = new Casilla(true, true, piezaSecundaria, piezaSecundaria, y, x);
                         }
                     } else {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(true, true, piezSecundaria);
+                            tablero[x][y] = new Casilla(true, true, piezaSecundaria, piezaSecundaria, y, x);
                         } else {
-                            tablero[x][y] = new Casilla(false, false, 0);
+                            tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
                         }
                     }
                 } else if (x >= 5 && x <= 7) {
                     if ((x + 1) % 2 == 0) {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(false, false, 0);
+                            tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
                         } else {
-                            tablero[x][y] = new Casilla(true, true, piezaQueComienza);
+                            tablero[x][y] = new Casilla(true, true, piezaQueComienza, piezaQueComienza, y, x);
                         }
                     } else {
                         if ((y + 1) % 2 == 0) {
-                            tablero[x][y] = new Casilla(true, true, piezaQueComienza);
+                            tablero[x][y] = new Casilla(true, true, piezaQueComienza, piezaQueComienza, y, x);
                         } else {
-                            tablero[x][y] = new Casilla(false, false, 0);
+                            tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
                         }
                     }
                 } else if ((x + 1) % 2 == 0) {
                     if ((y + 1) % 2 == 0) {
-                        tablero[x][y] = new Casilla(false, false, 0);
+                        tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
                     } else {
-                        tablero[x][y] = new Casilla(true, false, 0);
+                        tablero[x][y] = new Casilla(true, false, 0, 0, y, x);
                     }
                 } else {
                     if ((y + 1) % 2 == 0) {
-                        tablero[x][y] = new Casilla(true, false, 0);
+                        tablero[x][y] = new Casilla(true, false, 0, 0, y, x);
                     } else {
-                        tablero[x][y] = new Casilla(false, false, 0);
+                        tablero[x][y] = new Casilla(false, false, 0, 0, y, x);
                     }
                 }
             }
@@ -63,11 +64,28 @@ public class Tablero {
     }
 
     public void imprimirTablero() {
+        System.out.println("");
+        for (int x = 0; x < 8; x++) {
+            System.out.print("  " + (x + 1) + "  ");
+        }
+        System.out.println("");
         for (int x = 0; x < tablero.length; x++) {
             for (int y = 0; y < tablero[x].length; y++) {
                 System.out.print(tablero[x][y].getPieza());
             }
+            System.out.print("  " + (x + 1));
             System.out.println("");
         }
+    }
+
+    public boolean saberSiTienePiezaDelJugador(int x, int y, int pieza) {
+        if (tablero[y][x].getNumPieza() == pieza) {
+            return true;
+        } else if (tablero[y][x].getNumPieza() == 0) {
+            System.out.println("La casilla no tiene pieza");
+            return false;
+        }
+        System.out.println("La pieza que esta en la casilla no es del jugador");
+        return false;
     }
 }
